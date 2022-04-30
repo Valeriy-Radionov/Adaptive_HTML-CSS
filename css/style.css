@@ -1,0 +1,313 @@
+/* Обнуление */
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+html,
+body {
+  height: 100%;
+  line-height: 1;
+}
+body {
+  font-family: Rubik;
+  font-size: 12px;
+  color: #616161;
+}
+/* селектор атрибута будет применен ко всем классам с Имякласса__container */
+[class*="__container"] {
+  max-width: 1087px;
+  margin: 0 auto; /* по центру */
+  padding: 0px 15px;
+}
+/* PC */
+@media (max-width: 1087px) {
+  [class*="__container"] {
+    max-width: 970px;
+  }
+}
+/* TABLET */
+@media (max-width: 991.98px) {
+  [class*="__container"] {
+    max-width: 750px;
+  }
+}
+/* MOBILE */
+@media (max-width: 767.98px) {
+  [class*="__container"] {
+    max-width: none;
+  }
+}
+/* MOBILE 479.98px */
+@media (max-width: 479.98px) {
+}
+.wrapper {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.main {
+  flex: 1 1 auto; /*для того, чтобы он расширялся и прижал футер к низу */
+}
+.header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 50; /* все 5 параметров зафиксируют наш header*/
+}
+.header__container {
+  display: flex;
+  min-height: 114px;
+  align-items: center;
+}
+.heder__logo {
+  position: relative;
+  z-index: 5;
+}
+.header__menu {
+  flex: 1 1 auto; /* расширяется на весь размер меню*/
+}
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  /* padding: 0px 40px 0px 0px; */
+}
+.menu__body {
+}
+.menu__list {
+  display: flex;
+  /* отступы между пунктами меню */
+  /* gap: 40px; но есть возможность что на старых версиях не сработает поэтому на свой страх и риск */
+}
+.menu__item {
+  margin: 0px 40px 0px 0px; /* таким образом padding-left: в .menu не нужен так как он также составляет 40px; */
+}
+.menu__link {
+  font-family: Raleway;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 1.2;
+  color: #000;
+  letter-spacing: 1px; /*межбуквенный интервал*/
+}
+.menu__link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 991.98px) {
+  .header__container {
+    min-height: 80px;
+  }
+  .header__button {
+    flex: 0 0 170px;
+  }
+  .menu__item {
+    margin: 0px 30px 0px 0px; /* таким образом padding-left: в .menu не нужен так как он также составляет 30px; */
+  }
+}
+/* медиа запрос для того чтобы "скрыть" меню (для меню бургера) и сдесь же его стилизуем */
+@media (max-width: 767.98px) {
+  .menu__body {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #fff;
+    padding: 90px 15px 30px 15px;
+    font-size: 20px;
+    transition: left 0.3s ease 0s;
+  }
+
+  .header:target .menu__body {
+    left: 0;
+  } /* в момент когда мы нажимаем на бургер и обращаемся по id к этому объекту то оно получает псевдоклас :target */
+  .header:target .menu__body:before {
+    /*прокладка для того чтобы если нужно будут скролить меню оно заезжало за нее*/
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 80px;
+    width: 100%;
+    background-color: #fff;
+  }
+  .menu__list {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .menu__item {
+    margin: 0px 0px 25px 0px;
+  }
+  .menu__item:last-child {
+    margin-bottom: 0;
+  }
+  .menu__link {
+    /* color: #fff; */
+  }
+}
+@media (max-width: 479.98px) {
+  .heder__logo {
+    flex: 0 0 40px;
+    overflow: hidden;
+  }
+}
+/* -------------------------------------- */
+.header__button {
+  position: relative;
+  z-index: 5;
+  flex: 0 0 252px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.button {
+  display: inline-block; /* на всякий случай т.к кнопку мы делаем из ссылки а ссылка это не блочный элемент*/
+  font-family: Raleway;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  color: #fcfdfe;
+  padding: 14px 30px;
+  border-radius: 5px;
+  background-color: #ec5863;
+  transition: background-color 0.3s ease 0s; /* плавность изменения цвета при наведении*/
+}
+.button:hover {
+  /*срабатывает hover при наведении на элемент*/
+  background-color: #f37981;
+  color: #90a4ae;
+}
+.button__blue {
+  background-color: #4285f4;
+}
+.button__blue:hover {
+  background-color: #76a7f5;
+}
+
+/* !меню бургер */
+.close-icon-menu,
+.icon-menu {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .close-icon-menu,/* close кнопка */
+  .icon-menu {
+    /* бургер кнопка */
+    display: flex;
+    position: relative;
+    flex: 0 0 30px; /* flex-grow: 0 - определяет как много свободного пространства во flex-контейнере должно быть назначено текущему элементу 
+
+  flex-shrink: 0 - которое определяет фактор сжатия flex-элемента. Flex-элементы будут заполнять контейнер в зависимости от значения flex-shrink, когда стандартная ширина flex-элементов шире, чем flex-контейнер. 
+  
+  flex-basis: 30 - задаёт базовый размер флекс элемента по основной оси. Это свойство определяет размер контент-бокса, если не задано иначе через box-sizing. */
+    height: 18px;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0px 0px 0px 20px;
+  }
+
+  .icon-menu::before,
+  .icon-menu::after {
+    content: "";
+    background-color: black;
+    height: 2px;
+    border-radius: 10px;
+  }
+
+  .icon-menu span {
+    height: 2px;
+    background-color: black;
+    border-radius: 10px;
+  }
+  .close-icon-menu {
+    display: none; /* скрытие элемента*/
+  }
+  /* close  кнопка */
+  .close-icon-menu::before,
+  .close-icon-menu::after {
+    content: "";
+    background-color: black;
+    height: 2px;
+    border-radius: 10px;
+    transform-origin: 1px 1px;
+  }
+  .close-icon-menu::before {
+    transform: rotate(35deg);
+  }
+  .close-icon-menu::after {
+    transform: rotate(-35deg);
+  }
+  .header:target .icon-menu {
+    display: none;
+  }
+  .header:target .close-icon-menu {
+    display: flex;
+  }
+}
+/* Основной блок первой страниц MAIN BLOCK get_started */
+.get-started {
+}
+.get-started__container {
+}
+.get-started__content {
+}
+.get-started__block-text {
+}
+.block-text {
+}
+.blok-text__title {
+}
+.blok-text__title-blue {
+}
+.block-text__text {
+}
+.block-text__button {
+}
+.button {
+}
+.get-started__video {
+}
+.video-get-started {
+}
+.video-getstarted__icon {
+}
+.video-getstarted__body {
+}
+.video-getstarted__title {
+}
+.video-getstarted__text {
+}
+.get-started__image {
+}
