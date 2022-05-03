@@ -2,4 +2,3 @@
 1. Clean CSS
 2. Adaptive
 3. Flex
-4. Debug
